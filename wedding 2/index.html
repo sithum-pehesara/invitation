@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation — Kavya & Arjun</title>
+  <meta name="description" content="You are cordially invited to celebrate the wedding of Kavya & Arjun on January 27, 2027." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ LOADING SCREEN ══════════════ -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-rings">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+      </div>
+      <div class="loader-petals">
+        <div class="petal" style="--i:0"></div>
+        <div class="petal" style="--i:1"></div>
+        <div class="petal" style="--i:2"></div>
+        <div class="petal" style="--i:3"></div>
+        <div class="petal" style="--i:4"></div>
+        <div class="petal" style="--i:5"></div>
+        <div class="petal" style="--i:6"></div>
+        <div class="petal" style="--i:7"></div>
+      </div>
+      <div class="loader-text">
+        <span class="loader-title">You're Invited</span>
+        <span class="loader-sub">Loading your invitation…</span>
+        <div class="loader-bar-wrap"><div id="loader-bar" class="loader-bar"></div></div>
+      </div>
+    </div>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main id="main-content" class="hidden">
+
+    <!-- ── HERO ── -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-img" style="background-image:url('bg.png')"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="falling-petals" id="falling-petals"></div>
+
+      <div class="hero-content">
+        <p class="hero-pre animate-fade-up" style="animation-delay:.2s">Together with their families</p>
+        <h1 class="hero-names animate-fade-up" style="animation-delay:.5s">
+          <span class="name-bride">Kavya</span>
+          <span class="hero-amp">&amp;</span>
+          <span class="name-groom">Arjun</span>
+        </h1>
+        <p class="hero-invite animate-fade-up" style="animation-delay:.8s">
+          joyfully invite you to<br/>celebrate their wedding
+        </p>
+        <div class="hero-divider animate-fade-up" style="animation-delay:1s">
+          <span class="divider-line"></span>
+          <span class="divider-icon">✦</span>
+          <span class="divider-line"></span>
+        </div>
+        <div class="hero-date-block animate-fade-up" style="animation-delay:1.2s">
+          <span class="hdb-day">Tuesday</span>
+          <span class="hdb-date">January 27, 2027</span>
+          <span class="hdb-time">4:00 PM onwards</span>
+        </div>
+        <a href="#countdown" class="hero-scroll-btn animate-fade-up" style="animation-delay:1.5s" id="hero-scroll-btn">
+          <span>Scroll Down</span>
+          <span class="scroll-arrow">↓</span>
+        </a>
+      </div>
+
+      <div class="hero-couple-img animate-fade-up" style="animation-delay:.3s">
+        <img src="couple.png" alt="Bride and Groom" />
+      </div>
+    </section>
+
+    <!-- ── COUNTDOWN ── -->
+    <section class="section countdown-section" id="countdown">
+      <div class="section-bg-soft"></div>
+      <div class="container">
+        <p class="section-label reveal">Days Until We Say "I Do"</p>
+        <h2 class="section-title reveal">The Big Day is Almost Here!</h2>
+        <div class="countdown-grid reveal" id="countdown-grid">
+          <div class="cd-box">
+            <span class="cd-num" id="cd-days">00</span>
+            <span class="cd-label">Days</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-hours">00</span>
+            <span class="cd-label">Hours</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-minutes">00</span>
+            <span class="cd-label">Minutes</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-seconds">00</span>
+            <span class="cd-label">Seconds</span>
+          </div>
+        </div>
+        <p id="cd-message" class="cd-message hidden">🎉 The wedding day has arrived! Celebrate with us!</p>
+      </div>
+    </section>
+
+    <!-- ── EVENT DETAILS ── -->
+    <section class="section details-section" id="details">
+      <div class="container">
+        <p class="section-label reveal">Wedding Details</p>
+        <h2 class="section-title reveal">Ceremony &amp; Reception</h2>
+
+        <div class="details-cards reveal">
+          <!-- Date Card -->
+          <div class="detail-card" id="card-date">
+            <div class="dc-icon">📅</div>
+            <h3 class="dc-title">Date</h3>
+            <p class="dc-value">Tuesday</p>
+            <p class="dc-value large">January 27, 2027</p>
+          </div>
+
+          <!-- Time Card -->
+          <div class="detail-card" id="card-time">
+            <div class="dc-icon">🕓</div>
+            <h3 class="dc-title">Time</h3>
+            <p class="dc-value">Ceremony</p>
+            <p class="dc-value large">4:00 PM</p>
+            <p class="dc-value">Reception follows at 7:00 PM</p>
+          </div>
+
+          <!-- Place Card -->
+          <div class="detail-card" id="card-place">
+            <div class="dc-icon">📍</div>
+            <h3 class="dc-title">Venue</h3>
+            <p class="dc-value">The Grand Pavilion</p>
+            <p class="dc-value large">Colombo, Sri Lanka</p>
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="dc-map-link" id="map-link">View on Map →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RSVP ── -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="rsvp-bg"></div>
+      <div class="container">
+        <p class="section-label reveal" style="color:#fff8f0">Will You Join Us?</p>
+        <h2 class="section-title reveal" style="color:#fff">Are You Coming? 💌</h2>
+        <p class="rsvp-sub reveal">We would love to have you with us on our special day.<br/>Please let us know by <strong>December 31, 2026</strong>.</p>
+
+        <form class="rsvp-form reveal" id="rsvp-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guest-name">Your Full Name</label>
+              <input type="text" id="guest-name" name="name" placeholder="Enter your name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="guest-email">Email Address</label>
+              <input type="email" id="guest-email" name="email" placeholder="Enter your email" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-group attend-group">
+            <label class="attend-label">Will you attend?</label>
+            <div class="attend-options">
+              <label class="attend-option" id="opt-yes">
+                <input type="radio" name="attending" value="yes" required />
+                <span class="attend-btn yes-btn">✔ Yes, I'll be there!</span>
+              </label>
+              <label class="attend-option" id="opt-no">
+                <input type="radio" name="attending" value="no" />
+                <span class="attend-btn no-btn">✖ Sorry, can't make it</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="guests-group">
+            <label for="num-guests">Number of Guests (including yourself)</label>
+            <select id="num-guests" name="guests">
+              <option value="1">Just me</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5+">5+ Guests</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guest-message">Leave a Wish (optional)</label>
+            <textarea id="guest-message" name="message" placeholder="Write your heartfelt wishes for the couple..." rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="rsvp-submit" id="rsvp-submit">Send My RSVP 💌</button>
+        </form>
+
+        <!-- Success State -->
+        <div class="rsvp-success hidden" id="rsvp-success">
+          <div class="success-icon">🎊</div>
+          <h3>Thank You!</h3>
+          <p id="rsvp-success-msg">We're so glad you'll be joining us. See you on January 27th!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THANK YOU ── -->
+    <section class="section thankyou-section" id="thankyou">
+      <div class="ty-bg-glow ty-glow-left"></div>
+      <div class="ty-bg-glow ty-glow-right"></div>
+
+      <!-- Floating hearts background -->
+      <div class="ty-hearts-bg" id="ty-hearts-bg"></div>
+
+      <div class="container">
+
+        <!-- Main text block -->
+        <div class="ty-text-block">
+          <p class="section-label reveal ty-label">A Note From The Couple</p>
+          <h2 class="ty-heading reveal">
+            <span class="ty-script">Thank You</span>
+          </h2>
+
+          <div class="ty-divider reveal">
+            <span class="ty-div-line"></span>
+            <span class="ty-div-heart">♥</span>
+            <span class="ty-div-line"></span>
+          </div>
+
+          <p class="ty-message reveal">
+            From the bottom of our hearts, <strong>thank you</strong> for being here —
+            for your love, your laughter, and your presence in our lives.
+          </p>
+          <p class="ty-message reveal" style="animation-delay:.15s">
+            This journey would not be the same without every single one of you.
+            You have filled our story with colour, warmth, and joy that we will
+            carry with us forever.
+          </p>
+          <p class="ty-message reveal" style="animation-delay:.3s">
+            We cannot wait to celebrate with you on our special day and create
+            beautiful memories that will last a lifetime. 🌸
+          </p>
+
+          <!-- Signature -->
+          <div class="ty-signature reveal">
+            <p class="ty-sig-text">With all our love,</p>
+            <p class="ty-sig-names">Kavya &amp; Arjun</p>
+            <div class="ty-hearts-row" id="ty-hearts-row">
+              <span class="ty-heart" style="--d:0s">♥</span>
+              <span class="ty-heart" style="--d:.2s">♥</span>
+              <span class="ty-heart" style="--d:.4s">♥</span>
+            </div>
+          </div>
+
+          <!-- Share prompt -->
+          <div class="ty-share reveal">
+            <p class="ty-share-label">Share the love ✨</p>
+            <div class="ty-share-btns">
+              <button class="ty-share-btn" id="share-wa" onclick="shareInvite('whatsapp')">💬 WhatsApp</button>
+              <button class="ty-share-btn" id="share-copy" onclick="copyLink()">🔗 Copy Link</button>
+            </div>
+            <p class="ty-copied-msg hidden" id="ty-copied">✔ Link copied to clipboard!</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer" id="footer">
+      <div class="footer-flowers">
+        <span class="ff" style="--fi:0">🌸</span>
+        <span class="ff" style="--fi:1">🌷</span>
+        <span class="ff" style="--fi:2">🌺</span>
+        <span class="ff" style="--fi:3">🌸</span>
+        <span class="ff" style="--fi:4">🌷</span>
+      </div>
+      <p class="footer-names">Kavya &amp; Arjun</p>
+      <p class="footer-date">January 27, 2027 • Colombo, Sri Lanka</p>
+      <p class="footer-quote">"Two souls, one heart — forever and always."</p>
+
+      <a href="#hero" class="back-to-top-btn" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        <span class="btt-arrow">↑</span>
+        <span>Back to Top</span>
+      </a>
+
+      <p class="footer-copy">Made with ❤️ for our special day</p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

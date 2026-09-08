@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation — QR Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a0e0e 0%, #2d1515 50%, #1a0a0a 100%);
+      font-family: 'Lato', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Floating particles */
+    .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .p { position: absolute; border-radius: 50%; background: #c9a96e; animation: rise linear infinite; opacity: 0; }
+    @keyframes rise {
+      0%   { transform: translateY(100vh); opacity: 0; }
+      10%  { opacity: .5; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,169,110,.3);
+      border-radius: 24px;
+      padding: clamp(2rem, 6vw, 3.5rem) clamp(2rem, 6vw, 3.5rem);
+      backdrop-filter: blur(16px);
+      text-align: center;
+      max-width: 420px; width: 90%;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,169,110,.2);
+      animation: card-in .9s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(40px) scale(.95); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    /* Gold corner decorations */
+    .card::before, .card::after {
+      content: '✦';
+      position: absolute; color: #c9a96e; font-size: 1.2rem;
+      opacity: .6;
+    }
+    .card::before { top: 1rem; left: 1rem; }
+    .card::after  { bottom: 1rem; right: 1rem; }
+
+    .card-label {
+      font-size: .7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: #c9a96e; margin-bottom: .6rem;
+    }
+
+    .card-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 8vw, 3rem);
+      color: #e8d5a3;
+      text-shadow: 0 0 30px rgba(201,169,110,.5);
+      margin-bottom: .3rem;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%,100% { text-shadow: 0 0 20px rgba(201,169,110,.4); }
+      50%      { text-shadow: 0 0 50px rgba(201,169,110,.9); }
+    }
+
+    .card-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: .95rem;
+      color: rgba(255,255,255,.5); margin-bottom: 1.8rem;
+    }
+
+    /* Divider */
+    .div {
+      display: flex; align-items: center; gap: .8rem;
+      margin-bottom: 1.8rem;
+    }
+    .div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c9a96e, transparent); }
+    .div-icon { color: #d4826a; font-size: .9rem; }
+
+    /* QR box */
+    .qr-wrap {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1rem;
+      display: inline-block;
+      box-shadow: 0 8px 40px rgba(201,169,110,.25);
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: qr-glow 2s ease-in-out infinite;
+    }
+    @keyframes qr-glow {
+      0%,100% { box-shadow: 0 8px 40px rgba(201,169,110,.2); }
+      50%      { box-shadow: 0 8px 60px rgba(201,169,110,.5); }
+    }
+    .qr-wrap img {
+      display: block; width: 220px; height: 220px;
+      border-radius: 8px;
+    }
+    .qr-wrap .qr-corner {
+      position: absolute; width: 20px; height: 20px;
+      border-color: #c9a96e; border-style: solid;
+    }
+    .qr-corner.tl { top: 6px; left: 6px;  border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+    .qr-corner.tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; border-radius: 0 4px 0 0; }
+    .qr-corner.bl { bottom: 6px; left: 6px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 4px; }
+    .qr-corner.br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
+
+    /* URL chip */
+    .url-chip {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(201,169,110,.12);
+      border: 1px solid rgba(201,169,110,.3);
+      border-radius: 50px;
+      padding: .5rem 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .url-chip span {
+      font-family: 'Lato', monospace;
+      font-size: .85rem; color: #e8d5a3;
+      word-break: break-all;
+    }
+
+    /* Instruction */
+    .instruction {
+      font-size: .82rem; color: rgba(255,255,255,.45);
+      line-height: 1.7; letter-spacing: .3px;
+      margin-bottom: 1.5rem;
+    }
+    .instruction strong { color: #c9a96e; }
+
+    /* Refresh button */
+    .refresh-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .65rem 1.6rem;
+      border: 1px solid rgba(201,169,110,.4);
+      border-radius: 50px;
+      background: transparent;
+      color: #c9a96e; font-size: .85rem;
+      font-family: 'Lato', sans-serif;
+      cursor: pointer; letter-spacing: 1px;
+      transition: all .3s ease;
+    }
+    .refresh-btn:hover {
+      background: rgba(201,169,110,.15);
+      border-color: #c9a96e;
+    }
+
+    /* Date badge */
+    .date-badge {
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: rgba(255,255,255,.35);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <div class="card">
+    <p class="card-label">Wedding Invitation</p>
+    <h1 class="card-title">Kavya &amp; Arjun</h1>
+    <p class="card-sub">Scan to open the invitation</p>
+
+    <div class="div">
+      <span class="div-line"></span>
+      <span class="div-icon">♥</span>
+      <span class="div-line"></span>
+    </div>
+
+    <!-- QR Code (generated from URL) -->
+    <div class="qr-wrap">
+      <div class="qr-corner tl"></div>
+      <div class="qr-corner tr"></div>
+      <div class="qr-corner bl"></div>
+      <div class="qr-corner br"></div>
+      <img id="qr-img" src="" alt="QR Code for Wedding Invitation" />
+    </div>
+
+    <br/>
+
+    <!-- URL display -->
+    <div class="url-chip">
+      <span>📡</span>
+      <span id="url-display">Detecting URL…</span>
+    </div>
+
+    <p class="instruction">
+      <strong>PC සහ Phone</strong> — එකම WiFi හෝ Hotspot<br/>
+      connect කරලා QR code scan කරන්න 📱
+    </p>
+
+    <button class="refresh-btn" onclick="generateQR()">↻ Refresh QR</button>
+
+    <p class="date-badge">January 27, 2027 • Colombo, Sri Lanka</p>
+  </div>
+
+  <script>
+    // ── Particles ──
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+      const d = document.createElement('div');
+      d.className = 'p';
+      const s = Math.random() * 5 + 2;
+      d.style.cssText = `
+        width:${s}px;height:${s}px;
+        left:${Math.random()*100}%;
+        animation-duration:${Math.random()*8+5}s;
+        animation-delay:${Math.random()*6}s;
+        opacity:${Math.random()*.5+.1};
+      `;
+      pc.appendChild(d);
+    }
+
+    // ── QR Generator ──
+    function generateQR() {
+      // Build invitation URL from current host (replacing qr.html with index.html)
+      const base = window.location.href.replace('qr.html', 'index.html');
+      const url  = encodeURIComponent(base);
+
+      document.getElementById('url-display').textContent = base;
+
+      const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=3a2c2c&bgcolor=ffffff&data=${url}&qzone=1&format=png`;
+      document.getElementById('qr-img').src = qrSrc;
+    }
+
+    // Auto-generate on load
+    generateQR();
+  </script>
+</body>
+</html>
